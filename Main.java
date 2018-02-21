@@ -1,4 +1,3 @@
-package uk.example;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,7 +9,7 @@ public class Main {
 	public static ExecutorService service = Executors.newFixedThreadPool(2);
 	public static int[] hist = new int[20];
 	public volatile int x = 1;
-	public volatile int y = 1;
+	public int y = 1;
 
 	public void actor1() {
 	    long c = 0;
@@ -19,13 +18,15 @@ public class Main {
 	        c += i;
 	    }
 	    // (c % 3 == 0) Just keep it to avoid JIT optimization
-	    x = (int) (c % 3 + 2);
+	    x = (int) (c % 3 + 2); // x = 2 
 	    
+		
+	    // Keep the thread busy
 	    c = 0;
 	    for (int i = 0; i < 12450; i++) {
 	        c += i;
 	    }
-	    y = (int) (c % 3 + 3);
+	    y = (int) (c % 3 + 3); // y = 3
 	}
 
 	public void actor2() {
