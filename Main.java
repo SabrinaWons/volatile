@@ -29,6 +29,7 @@ public class Main {
 	}
 
 	public void actor2() {
+	    // Keep the thread busy
 	    int y = this.y;
 	    long c = 0;
 	    for (int i = 0; i < 12450; i++) {
